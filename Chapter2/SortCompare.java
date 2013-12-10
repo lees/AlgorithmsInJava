@@ -4,16 +4,16 @@ public class SortCompare
 	public static double time(String alg, Double[] a)
 	{
 		Stopwatch timer = new Stopwatch();
-		if (alg.equals("Вставки")) Insertion.sort(a);
-		if (alg.equals("Выбор")) Selection.sort(a);
-		if (alg.equals("Шелла")) Shell.sort(a);
+		if (alg.equals("Ins")) Insertion.sort(a);
+		if (alg.equals("Sel")) Selection.sort(a);
+		if (alg.equals("She")) Shell.sort(a);
 		//if (alg.equals("Слияние")) Merge.sort(a);
 		//if (alg.equals("Быстрая")) Quick.sort(a);
 		//if (alg.equals("Пирамидальная")) Heap.sort(a);
 		
 		double stime = timer.elapsedTime();
-		//StdOut.printf("%f",stime);
-		return timer.elapsedTime();
+		StdOut.printf("%f",stime);
+		return stime;
 
 	}
 
@@ -41,7 +41,7 @@ public class SortCompare
 		StdOut.printf("\n%s : %.1f \n",alg1,t1);
 		double t2 = timeRandomInput(alg2,N,T);
 		StdOut.printf("\n%s : %.1f \n",alg2,t2);
-		StdOut.printf("Для %d случайных Doubles\n %s в %.1f раз быстрее, чем %s \n",N,alg1,(t2/t1),alg2);
+		StdOut.printf("For %d random Doubles\n %s %.1f times faster, than %s \n",N,alg1,(t2/t1),alg2);
 	}
 
 }
