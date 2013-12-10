@@ -9,6 +9,7 @@ public class SortCompare
 		if (alg.equals("InsFm")) InsertionFastMove.sort(a);
 		if (alg.equals("Sel")) Selection.sort(a);
 		if (alg.equals("She")) Shell.sort(a);
+		if (alg.equals("SheA")) ShellArr.sort(a);
 		//if (alg.equals("Слияние")) Merge.sort(a);
 		//if (alg.equals("Быстрая")) Quick.sort(a);
 		//if (alg.equals("Пирамидальная")) Heap.sort(a);
