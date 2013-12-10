@@ -37,7 +37,7 @@ public class Insertion
 
 	public static void main(String[] args)
 	{
-		String[] a = In.readStrings();
+		String[] a = StdIn.readStrings();
 		sort(a);
 		assert isSorted(a);
 		show(a);
