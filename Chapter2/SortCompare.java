@@ -11,11 +11,13 @@ public class SortCompare
 		if (alg.equals("She")) Shell.sort(a);
 		if (alg.equals("SheA")) ShellArr.sort(a);
 		if (alg.equals("Mer")) Merge.sort(a);
-		//if (alg.equals("Быстрая")) Quick.sort(a);
+		if (alg.equals("Quick")) Quick.sort(a);
+		if (alg.equals("Heap")) Heap.sort(a);
+		
 		//if (alg.equals("Пирамидальная")) Heap.sort(a);
 		
 		double stime = timer.elapsedTime();
-		StdOut.printf("%f",stime);
+		StdOut.printf("%f | ",stime);
 		return stime;
 
 	}
@@ -27,6 +29,7 @@ public class SortCompare
 
 		for (int t = 0; t < T; t++)
 		{
+			if (t % 10 == 0) StdOut.println();
 			for (int i = 0; i < N; i++)
 				a[i] = StdRandom.uniform();
 			total += time(alg,a);

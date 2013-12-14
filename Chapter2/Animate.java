@@ -2,14 +2,14 @@
 public class Animate 
 { 
 
-	public static void drawDoubleArray(Double[] a)
+	public static void drawDoubleArray(Comparable[] a)
 	{
 
 		StdDraw.clear();
 		StdDraw.setPenRadius(0.005);
 		for (int i = 0; i<a.length;i++)
 		{
-			StdDraw.line(i*0.01,0.0,i*0.01,a[i]);
+			StdDraw.line(i*0.01,0.0,i*0.01, (Double) a[i]);
 		}
 		StdDraw.show(50);
 
