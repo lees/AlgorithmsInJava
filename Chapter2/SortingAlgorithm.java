@@ -12,7 +12,7 @@ public class SortingAlgorithm
 	public static void exch(Comparable[] a, int i, int j)
 	{
 		Comparable t = a[i]; a[i] = a[j]; a[j] = t;
-		Animate.drawDoubleArray(a);
+		//Animate.drawDoubleArray(a);
 	}
 
 	public static void show(Comparable[] a)

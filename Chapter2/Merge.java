@@ -2,18 +2,30 @@
 public class Merge extends SortingAlgorithm
 {
 
+	private static void insertionSort(Comparable[] a,int lo, int hi)
+	{
+		
+		for (int i = lo; i <= hi; i++)
+		{
+			for (int j = i; j > lo && less(a[j],a[j-1]);j--)
+				exch(a, j, j-1);
+		}
+	}
+
 	public static void merge(Comparable[] a, int lo, int mid, int hi)
 	{
-		int i = lo, j = mid + 1;
-		for (int k = lo; k <= hi ; k++)
-		 	aux[k] = a[k];
+		for (int k = lo; k<= mid; k++)
+			aux[k] = a[k];
+
+		for (int k = hi, kk=mid+1; k > mid ; k--, kk++)
+		 	aux[kk] = a[k];
 		
+		int i = lo, j = hi;
 		for (int k = lo; k <= hi; k++) 
 		{
-			if (i > mid)       				a[k] = aux[j++];
-			else if (j > hi)   				a[k] = aux[i++];
-			else if (less(aux[j],aux[i]))   a[k] = aux[j++];
-			else							a[k] = aux[i++];
+			if (i==hi) break;
+			if (less(aux[j],aux[i]))   a[k] = aux[j--];
+			else					   a[k] = aux[i++];
 			//Animate.drawDoubleArray(a);
  		}
 	}
@@ -29,6 +41,13 @@ public class Merge extends SortingAlgorithm
 	public static void sort(Comparable[] a, int lo, int hi)
 	{
 		if (hi <= lo) return;
+		
+		if (hi-lo < 15)
+		{
+			insertionSort(a,lo,hi);
+			return;
+		}
+
 		int mid = lo + (hi-lo)/2;
 		sort(a,lo,mid);
 		sort(a,mid+1,hi);
