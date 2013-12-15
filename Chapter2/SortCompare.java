@@ -12,7 +12,6 @@ public class SortCompare
 		if (alg.equals("She")) Shell.sort(a);
 		if (alg.equals("SheA")) ShellArr.sort(a);
 		if (alg.equals("Mer")) Merge.sort(a);
-		if (alg.equals("Mer1")) Merge1.sort(a);
 		if (alg.equals("Quick")) Quick.sort(a);
 		if (alg.equals("Heap")) Heap.sort(a);
 		
