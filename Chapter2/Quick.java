@@ -21,8 +21,8 @@ public class Quick extends SortingAlgorithm
 		Comparable v = a[lo];
 		while (true)
 		{
-			while (less(a[++i],v)) if (i == hi) break;
-			while (less(v, a[--j])) if (j == lo) break;
+			while (less(a,++i,lo)) if (i == hi) break;
+			while (less(a,lo, --j)) if (j == lo) break;
 			if (i >= j) break;
 			exch(a, i, j);
 		}

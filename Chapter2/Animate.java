@@ -2,15 +2,45 @@
 public class Animate 
 { 
 
+	private static void drawDoubleArray_lines(Comparable[] a)
+	{
+		StdDraw.setPenColor(StdDraw.BLUE);
+		for (int i = 0; i<a.length;i++)
+		{
+			StdDraw.line(i*0.01,0.0,i*0.01, (Double) a[i]);
+		}
+	}
+	
+	public static void drawDoubleArrayLess(Comparable[] a, int j,int k)
+	{
+		StdDraw.clear();
+		StdDraw.setPenRadius(0.005);
+		drawDoubleArray_lines(a);
+		StdDraw.setPenColor(StdDraw.GREEN);
+		StdDraw.line(j*0.01,0.0,j*0.01, (Double) a[j]);
+		StdDraw.line(k*0.01,0.0,k*0.01, (Double) a[k]);
+		StdDraw.show(50);
+	}
+
+	public static void drawDoubleArrayExchange(Comparable[] a, int j,int k)
+	{
+		StdDraw.clear();
+		StdDraw.setPenRadius(0.005);
+		drawDoubleArray_lines(a);
+		StdDraw.setPenColor(StdDraw.RED);
+		StdDraw.line(j*0.01,0.0,j*0.01, (Double) a[j]);
+		StdDraw.line(k*0.01,0.0,k*0.01, (Double) a[k]);
+		StdDraw.show(50);
+	}
+
+
 	public static void drawDoubleArray(Comparable[] a)
 	{
 
 		StdDraw.clear();
 		StdDraw.setPenRadius(0.005);
-		for (int i = 0; i<a.length;i++)
-		{
-			StdDraw.line(i*0.01,0.0,i*0.01, (Double) a[i]);
-		}
+		StdDraw.setPenColor(StdDraw.BLACK);
+		drawDoubleArray_lines(a);
 		StdDraw.show(50);
 
 	}

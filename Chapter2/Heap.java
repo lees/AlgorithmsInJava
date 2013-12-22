@@ -24,8 +24,8 @@ public class Heap extends SortingAlgorithm
 		while (2*k <= N)
 		{
 			int j = 2 * k;
-			if (j < N && less(a[j],a[j+1])) j++;
-			if (!less(a[k],a[j])) break;
+			if (j < N && less(a,j,j+1)) j++;
+			if (!less(a,k,j)) break;
 			exch(a,k,j);
 			k = j;
 		}

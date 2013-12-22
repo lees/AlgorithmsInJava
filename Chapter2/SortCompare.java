@@ -7,7 +7,7 @@ public class SortCompare
 		Stopwatch timer = new Stopwatch();
 		if (alg.equals("Ins")) Insertion.sort(a);
 		if (alg.equals("InsS")) InsertionSentinel.sort(a);
-		if (alg.equals("InsFm")) InsertionFastMove.sort(a);
+		//if (alg.equals("InsFm")) InsertionFastMove.sort(a);
 		if (alg.equals("Sel")) Selection.sort(a);
 		if (alg.equals("She")) Shell.sort(a);
 		if (alg.equals("SheA")) ShellArr.sort(a);

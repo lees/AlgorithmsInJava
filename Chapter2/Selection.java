@@ -9,7 +9,7 @@ public class Selection extends SortingAlgorithm
 			int min = i;
 			for (int j = i+1; j < N; j++)
 			{
-				if (less(a[j],a[min])) min = j;
+				if (less(a,j,min)) min = j;
 			}
 			exch(a,i,min);
 		}

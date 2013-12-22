@@ -1,4 +1,5 @@
 
+
 public class Merge extends SortingAlgorithm
 {
 
@@ -7,13 +8,16 @@ public class Merge extends SortingAlgorithm
 		
 		for (int i = lo; i <= hi; i++)
 		{
-			for (int j = i; j > lo && less(a[j],a[j-1]);j--)
+			for (int j = i; j > lo && less(a,j,j-1);j--)
 				exch(a, j, j-1);
 		}
 	}
 
 	public static void merge(Comparable[] a, int lo, int mid, int hi)
 	{
+		
+		if (less(a,mid,mid+1)) return;
+
 		for (int k = lo; k<= mid; k++)
 			aux[k] = a[k];
 
@@ -24,9 +28,9 @@ public class Merge extends SortingAlgorithm
 		for (int k = lo; k <= hi; k++) 
 		{
 			if (i==hi) break;
-			if (less(aux[j],aux[i]))   a[k] = aux[j--];
+			if (less(aux,j,i))   a[k] = aux[j--];
 			else					   a[k] = aux[i++];
-			//Animate.drawDoubleArray(a);
+			Animate.drawDoubleArray(a);
  		}
 	}
 

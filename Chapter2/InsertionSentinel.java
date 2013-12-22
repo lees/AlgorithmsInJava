@@ -8,13 +8,13 @@ public class InsertionSentinel extends SortingAlgorithm
 
 		for (int i = 1; i < N; i++)
 		{
-			if (less(a[i],a[min])) min = i;
+			if (less(a,i,min)) min = i;
 		}
 		exch(a,0,min);
 
 		for (int i = 1; i < N; i++)
 		{
-			for (int j = i; less(a[j],a[j-1]);j--)
+			for (int j = i; less(a,j,j-1);j--)
 				exch(a, j, j-1);
 		}
 	}
