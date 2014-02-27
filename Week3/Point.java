@@ -40,38 +40,39 @@ public class Point implements Comparable<Point> {
     }
 
     // slope between this point and that point
-    public double slopeTo(Point that) {
+    public double slopeTo(Point that) 
+    {
         
-		if (y == that.y && x == x.that) return Double.NEGATIVE_INFINITY;
-		
-		if (x == that.x) return Double.POSITIVE_INFINITY;
-		
-		if (y == that.y) return 0.0;
-		
-		return (that.y - y) / (that.x - x);
-		
+        if (y == that.y && x == x.that) return Double.NEGATIVE_INFINITY;
+        
+        if (x == that.x) return Double.POSITIVE_INFINITY;
+        
+        if (y == that.y) return 0.0;
+        
+        return (that.y - y) / (that.x - x);
+        
     }
 
     // is this point lexicographically smaller than that one?
     // comparing y-coordinates and breaking ties by x-coordinates
     public int compareTo(Point that) 
-	{    
-		if (y < that.y) return -1;
-		if (y > that.y) return 1;
-		
-		if (x < that.x) return -1;
-		if (x > that.x) return 1;
-		
-		return 0;	
+    {    
+        if (y < that.y) return -1;
+        if (y > that.y) return 1;
+        
+        if (x < that.x) return -1;
+        if (x > that.x) return 1;
+        
+        return 0;   
     }
-	
-	private static class SlopeOrder implements Comparator<Point> 
-	{
+    
+    private static class SlopeOrder implements Comparator<Point> 
+    {
         public int compare(Point p, Point q) 
-		{
+        {
             double slopeToP = slopeTo(p);
-			double slopeToQ = slopeTo(q);
-			return slopeToP.compareTo(slopeToQ);
+            double slopeToQ = slopeTo(q);
+            return slopeToP.compareTo(slopeToQ);
         }
     }
 
