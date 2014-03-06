@@ -3,7 +3,7 @@ import java.util.LinkedList;
 public class Brute 
 {
 
-	Point[] points;
+	private Point[] points;
 
 	private static class PointsLine
 	{
@@ -26,6 +26,11 @@ public class Brute
 			}
 			return result;
 		}
+	}
+
+	public Brute()
+	{
+
 	}
 
 	private Brute(int size)
