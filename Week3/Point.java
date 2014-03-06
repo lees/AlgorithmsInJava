@@ -43,7 +43,7 @@ public class Point implements Comparable<Point> {
     public double slopeTo(Point that) 
     {
         
-        if (y == that.y && x == x.that) return Double.NEGATIVE_INFINITY;
+        if (y == that.y && x == that.x) return Double.NEGATIVE_INFINITY;
         
         if (x == that.x) return Double.POSITIVE_INFINITY;
         
@@ -66,13 +66,13 @@ public class Point implements Comparable<Point> {
         return 0;   
     }
     
-    private static class SlopeOrder implements Comparator<Point> 
+    private class SlopeOrder implements Comparator<Point> 
     {
         public int compare(Point p, Point q) 
         {
             double slopeToP = slopeTo(p);
             double slopeToQ = slopeTo(q);
-            return slopeToP.compareTo(slopeToQ);
+            return Double.compare(slopeToP,slopeToQ);
         }
     }
 
