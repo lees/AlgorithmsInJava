@@ -6,17 +6,17 @@ API:          PASSED
 
 Correctness:  36/36 tests passed
 Memory:       1/1 tests passed
-Timing:       3/17 tests passed
+Timing:       16/17 tests passed
 
-Raw score: 79.41% [Correctness: 65%, Memory: 10%, Timing: 25%, Style: 0%]
+Raw score: 98.53% [Correctness: 65%, Memory: 10%, Timing: 25%, Style: 0%]
 Assessment Details
 The following files were submitted:
 ----------------------------------
 total 16K
--rw-r--r-- 1 3.9K Mar  8 11:13 Brute.java
--rw-r--r-- 1 3.3K Mar  8 11:13 Fast.java
--rw-r--r-- 1 2.4K Mar  8 11:13 Point.java
--rw-r--r-- 1 3.2K Mar  8 11:13 studentSubmission.zip
+-rw-r--r-- 1 3.9K Mar  8 18:52 Brute.java
+-rw-r--r-- 1 3.0K Mar  8 18:52 Fast.java
+-rw-r--r-- 1 2.4K Mar  8 18:52 Point.java
+-rw-r--r-- 1 3.1K Mar  8 18:52 studentSubmission.zip
 
 
 ******************************************************************************
@@ -40,13 +40,15 @@ total 16K
 
 % checkstyle *.java
 *-----------------------------------------------------------
-Fast.java:7:1: File contains tab characters (this is the first instance).
-Fast.java:85:44: ';' is not followed by whitespace.
-Fast.java:85:44: '}' is not preceded with whitespace.
-Fast.java:116:52: ',' is not followed by whitespace.
-Fast.java:124:57: ';' is followed by whitespace.
-Fast.java:132:42: Control variable 'j' is modified.
-Fast.java:139:42: Control variable 'j' is modified.
+Fast.java:3:8: Unused import - java.util.Vector.
+Fast.java:8:1: File contains tab characters (this is the first instance).
+Fast.java:53:44: ';' is not followed by whitespace.
+Fast.java:53:44: '}' is not preceded with whitespace.
+Fast.java:84:76: ',' is not followed by whitespace.
+Fast.java:85:52: ',' is not followed by whitespace.
+Fast.java:94:57: ';' is followed by whitespace.
+Fast.java:103:42: Control variable 'j' is modified.
+Fast.java:112:42: Control variable 'j' is modified.
 ================================================================
 
 
@@ -252,7 +254,7 @@ standard output and standard drawing to the reference solution
 % java Fast input6.txt
 
 [testing standard output]
-(32000, 10000) -> (21000, 10000) -> (19000, 10000) -> (18000, 10000) -> (14000, 10000)
+(14000, 10000) -> (18000, 10000) -> (19000, 10000) -> (21000, 10000) -> (32000, 10000)
 
 [testing standard drawing]
 
@@ -260,8 +262,8 @@ standard output and standard drawing to the reference solution
 % java Fast input8.txt
 
 [testing standard output]
-(0, 10000) -> (3000, 7000) -> (7000, 3000) -> (10000, 0)
-(20000, 21000) -> (14000, 15000) -> (6000, 7000) -> (3000, 4000)
+(10000, 0) -> (7000, 3000) -> (3000, 7000) -> (0, 10000)
+(3000, 4000) -> (6000, 7000) -> (14000, 15000) -> (20000, 21000)
 
 [testing standard drawing]
 
@@ -440,10 +442,10 @@ Test 1a-1e: Find collinear points among N random distinct points
                                                       slopeTo()
              N    time     slopeTo()   compare()  + 2*compare()        compareTo()
 -----------------------------------------------------------------------------------------------
-=> passed    16   0.09         680           0            680                 2176         
-=> passed    32   0.02        5456           0           5456                16896         
-=> passed    64   0.02       43680           0          43680               133120         
-=> FAILED   128   0.04      349504           0         349504              1056768   (1.3x)
+=> passed    16   0.08         680           0            680                 2176         
+=> passed    32   0.01        5456           0           5456                16896         
+=> passed    64   0.01       43680           0          43680               133120         
+=> FAILED   128   0.03      349504           0         349504              1056768   (1.3x)
 ==> 3/4 tests passed
 
 Total: 3/4 tests passed!
@@ -463,13 +465,13 @@ Test 1a-1g: Find collinear points among N random distinct points
                                                       slopeTo()
              N    time     slopeTo()   compare()  + 2*compare()        compareTo()
 -----------------------------------------------------------------------------------------------
-=> passed   128   0.17       16125       39344          94813                  734         
-=> passed   256   0.14       65021      186389         437799                 1732         
-=> passed   512   0.25      261116      868438        1997992                 3948         
-=> passed  1024   0.34     1046521     3964799        8976119                 8961         
+=> passed   128   0.16       31875       87391         206657                16734         
+=> passed   256   0.13      129283      407371         944025                66500         
+=> passed   512   0.29      520704     1872255        4265214               264556         
+=> passed  1024   0.53     2089975     8528703       19147381              1054465         
 ==> 4/4 tests passed
 
-lg ratio(slopeTo() + 2*compare()) = lg (8976119 / 1997992) = 2.17
+lg ratio(slopeTo() + 2*compare()) = lg (19147381 / 4265214) = 2.17
 => passed
 
 ==> 5/5 tests passed
@@ -479,9 +481,31 @@ Test 2a-2e: Find collinear points among the 4N points on an N x 4 grid
                                                       slopeTo()
              N    time     slopeTo()   compare()  + 2*compare()        compareTo()
 -----------------------------------------------------------------------------------------------
-=> FAILED   128  14.23     1282278      245903        1774084                 3972         
-=> FAILED   256  48.94     9476812      927949       11332710                 8978         
+=> passed   128   0.30      396817      544828        1486473               264580         
+=> passed   256   0.23     1590993     2081014        5753021              1054482         
+=> passed   512   0.95     6371409     8109673       22590755              4208159         
+==> 3/3 tests passed
 
-Total: 0/13 tests passed:Test aborted. Ran out of time or crashed before completion.
+lg ratio(slopeTo() + 2*compare()) = lg (22590755 / 5753021) = 1.97
+=> passed
+
+==> 4/4 tests passed
+
+Test 3a-3e: Find collinear points among the 8N points on an N x 8 grid
+
+                                                      slopeTo()
+             N    time     slopeTo()   compare()  + 2*compare()        compareTo()
+-----------------------------------------------------------------------------------------------
+=> passed    64   0.08      398855      849527        2097909               263598         
+=> passed   128   0.26     1599286     3251178        8101642              1051672         
+=> passed   256   1.08     6404857    12679845       31764547              4200714         
+==> 3/3 tests passed
+
+lg ratio(slopeTo() + 2*compare()) = lg (31764547 / 8101642) = 1.97
+=> passed
+
+==> 4/4 tests passed
+
+Total: 13/13 tests passed!
+
 ================================================================
-

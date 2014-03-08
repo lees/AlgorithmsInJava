@@ -1,7 +1,8 @@
+
 import java.util.LinkedList;
 import java.util.Vector;
 
-public class Fast 
+public class Fast
 {
 
 	private Point[] points;
@@ -32,39 +33,6 @@ public class Fast
 		StdOut.println("");
 	}
 
-	private class LinesCollection
-	{
-		private int size;
-		private Vector<Point> pointsCollection;
-		private Vector<Double> slopeCollection;
-
-
-		public LinesCollection()
-		{
-			size = 0;
-			pointsCollection = new Vector<Point>();
-			slopeCollection = new Vector<Double>();
-		}
-
-		public void addLine(double slope, Point point)
-		{
-			size++;
-			pointsCollection.add(point);
-			slopeCollection.add(slope);
-		}
-
-		public boolean hasLine(double slope, Point point)
-		{
-			for (int i = 0; i < size; i++)
-			{
-				if (slope != slopeCollection.get(i)) continue;
-				if (point.slopeTo(pointsCollection.get(i)) != slope) continue;
-				return true;
-			}
-			return false;
-		}
-
-	}
 
 	private class Line
 	{
@@ -90,10 +58,10 @@ public class Fast
 
 			while (pointsList.size() > 1)
 			{
-				StdOut.print(pointsList.removeLast().toString());
+				StdOut.print(pointsList.removeFirst().toString());
 				StdOut.print(" -> ");
 			}
-			StdOut.print(pointsList.removeLast().toString());
+			StdOut.print(pointsList.removeFirst().toString());
 			StdOut.println();
 
 		}
@@ -107,17 +75,19 @@ public class Fast
 	private void searchLines()
 	{
 
+		if (points.length < 4) return;
+		
 		java.util.Arrays.sort(points);
-		LinesCollection linesCollection = new LinesCollection();
 
 		for (int i = 0; i < points.length - 3; i++)
 		{
-			Point[] copy = java.util.Arrays.copyOfRange(points, i + 1, points.length);
+			Point[] copy = java.util.Arrays.copyOfRange(points,0, points.length);
 			java.util.Arrays.sort(copy,points[i].SLOPE_ORDER);
 
 			Point startPoint = points[i];
 			double slope = startPoint.slopeTo(copy[0]);
 			Line line = new Line();
+			boolean toSkip = (startPoint.compareTo(copy[0]) > 0);
 			line.add(startPoint);
 			line.add(copy[0]);
 			
@@ -129,6 +99,7 @@ public class Fast
 					line.add(startPoint);
 					line.add(copy[j]);
 					slope = startPoint.slopeTo(copy[j]);
+					toSkip = (startPoint.compareTo(copy[j]) > 0);
 					j++;
 					continue;
 				}
@@ -136,49 +107,63 @@ public class Fast
 				if (slope == startPoint.slopeTo(copy[j]))
 				{
 					line.add(copy[j]);
+					if (startPoint.compareTo(copy[j]) > 0)
+						toSkip = true;
 					j++;
 				}
 				else
 				{
-					
-					if (linesCollection.hasLine(slope, startPoint))
+					if (line.size() < 4 || toSkip)
 						line.clear();
 					else
-					{
-						if (line.size() < 4) 
-							line.clear();
-						else
-						{
-							linesCollection.addLine(slope, startPoint);
-							line.print();
-						}
-					}	
+						line.print();
 				}
 			}
 			
-			if (line.size() >= 4 && !linesCollection.hasLine(slope, startPoint))
-			{
+			if (line.size() >= 4 && !toSkip)
 				line.print();
-				linesCollection.addLine(slope, startPoint);
-			}
-				
+			else
+				line.clear();
 
 		}
+
+		// StdOut.println("Lines total: "); 
+		// StdOut.print(linesCollection.size());
 
 	}
 
 	public static void main(String[] args)
 	{
-
-		In input = new In(args[0]);
-
+		//StdDraw.show(0);
 		StdDraw.setXscale(0, 32768); 
 		StdDraw.setYscale(0, 32768);
 
-		int counter = input.readInt();
-		Fast search = new Fast(counter);
-		for (int i = counter; i > 0; i--)
-			search.setPoint(i, input.readInt(), input.readInt());
+		Fast search;
+
+		if (args.length == 1)
+		{
+			In input = new In(args[0]);
+			int counter = input.readInt();
+			search = new Fast(counter);
+			for (int i = counter; i > 0; i--)
+				search.setPoint(i, input.readInt(), input.readInt());
+		}
+		else
+		{
+			int size = 128;
+			search = new Fast(128 * 4);
+			int pos = 1;
+			for (int i = 128; i > 0; i--)
+			{
+				search.setPoint(pos++, i*100, 1000);
+				search.setPoint(pos++, i*100, 2000);
+				search.setPoint(pos++, i*100, 3000);
+				search.setPoint(pos++, i*100, 4000);
+			}
+
+		}
+
+		
 
 		search.searchLines();
 	
