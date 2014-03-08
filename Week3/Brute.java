@@ -11,10 +11,10 @@ public class Brute
         public PointsLine(Point a, Point b, Point c, Point d)
         {
             points = new Point[4];
-            points[0] = d;
-            points[1] = c;
-            points[2] = b;
-            points[3] = a;
+            points[0] = a;
+            points[1] = b;
+            points[2] = c;
+            points[3] = d;
 
         }
 
@@ -69,27 +69,26 @@ public class Brute
     private void searchLines()
     {
 
+        java.util.Arrays.sort(points);
+
         for (int i = 0; i < points.length; i++)
         {
             printPoint(i, "i = ");
 
-            for (int j = 0; j < points.length; j++)
+            for (int j = i + 1; j < points.length; j++)
             {
                 printPoint(j, "j = ");
-                if (points[i].compareTo(points[j]) < 1) continue;
                 double slopeToJ = points[i].slopeTo(points[j]);
 
-                for (int k = 0; k < points.length; k++)
+                for (int k = j + 1; k < points.length; k++)
                 {
                     printPoint(k, "k = ");
-                    if (points[j].compareTo(points[k]) < 1) continue;
                     double slopeToK = points[i].slopeTo(points[k]);
                     if (slopeToJ != slopeToK) continue;
 
-                    for (int l = 0; l < points.length; l++)
+                    for (int l = k + 1; l < points.length; l++)
                     {
                         printPoint(l, "l = ");
-                        if (points[k].compareTo(points[l]) < 1) continue;
                         double slopeToL = points[i].slopeTo(points[l]);
                         if (slopeToJ != slopeToL) continue;
 
