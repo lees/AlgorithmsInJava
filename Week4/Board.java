@@ -100,12 +100,17 @@ public class Board {
         return newBoard;
     }
 
-    public boolean equals(Board y)        // does this board equal y?
+    public boolean equals(Object y)        // does this board equal y?
     {
-        if (N != y.N) return false;
+        if (y == this) return true;
+        if (y == null) return false;
+        if (y.getClass() != this.getClass()) return false;
+        Board that = (Board) y;
+
+        if (N != that.N) return false;
         
         for (int i = 0; i < position.length - 1; i++)
-            if (position[i] != y.position[i]) return false;
+            if (position[i] != that.position[i]) return false;
 
         return true;
     }
