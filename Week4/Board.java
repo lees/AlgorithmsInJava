@@ -15,7 +15,7 @@ public class Board {
             for (int j = 0; j < blocks[i].length; j++)
             {
                 position[counter++] = blocks[i][j];
-                if (position[counter - 1] == 0) zeroPosition = counter - 1;
+                if (blocks[i][j] == 0) zeroPosition = counter - 1;
             }
                 
 
@@ -29,8 +29,8 @@ public class Board {
     public int hamming()                   // number of blocks out of place
     {
         int result = 0;
-        for (int i = 0; i < position.length - 2; i++) 
-            if (position[i] == i + 1)
+        for (int i = 0; i < position.length - 1; i++) 
+            if (position[i] != i + 1)
                 result++;
         return result;
     }
@@ -56,7 +56,7 @@ public class Board {
         int result = 0;
         for (int i = 0; i < position.length - 1; i++)
         {
-            int finalPos = position[i];
+            int finalPos = finalPosition(position[i]);
             int currentPos = i;
             result = result + Math.abs(posX(finalPos) - posX(currentPos));
             result = result + Math.abs(posY(finalPos) - posY(currentPos));
@@ -66,8 +66,8 @@ public class Board {
     
     public boolean isGoal()                // is this board the goal board?
     {
-        for (int i = 0; i < position.length - 2; i++) 
-            if (position[i] == i + 1)
+        for (int i = 0; i < position.length - 1; i++) 
+            if (position[i] != i + 1)
                 return false;
         if (position[position.length - 1] != 0)
             return false;
@@ -78,7 +78,7 @@ public class Board {
     {
         int temp = position[b];
         position[b] = position[a];
-        position[a] = position[b];
+        position[a] = temp;
     }
 
     private Board getCopy()
@@ -94,9 +94,9 @@ public class Board {
     {
         Board newBoard = getCopy();
         if (newBoard.zeroPosition > 1)
-            exch(0,1);
+            newBoard.exch(0,1);
         else
-            exch(N-1,N-2);
+            newBoard.exch(position.length-1,position.length-2);
         return newBoard;
     }
 
@@ -126,21 +126,25 @@ public class Board {
         {
             newBoard = getCopy();
             newBoard.exch(zeroPosition,zeroPosition + 1);
+            newBoard.zeroPosition++;
             result.push(newBoard);
         }
         else if(zeroX == N-1)
         {
             newBoard = getCopy();
             newBoard.exch(zeroPosition,zeroPosition - 1);
+            newBoard.zeroPosition--;
             result.push(newBoard);
         }
         else
         {
             newBoard = getCopy();
             newBoard.exch(zeroPosition,zeroPosition + 1);
+            newBoard.zeroPosition++;
             result.push(newBoard);
             newBoard = getCopy();
             newBoard.exch(zeroPosition,zeroPosition - 1);
+            newBoard.zeroPosition--;
             result.push(newBoard);
         }
 
@@ -148,21 +152,25 @@ public class Board {
         {
             newBoard = getCopy();
             newBoard.exch(zeroPosition,zeroPosition + N);
+            newBoard.zeroPosition = zeroPosition + N; 
             result.push(newBoard);
         }
         else if (zeroY == N - 1)
         {
             newBoard = getCopy();
             newBoard.exch(zeroPosition,zeroPosition - N);
+            newBoard.zeroPosition = zeroPosition - N;
             result.push(newBoard);
         }
         else
         {
             newBoard = getCopy();
             newBoard.exch(zeroPosition,zeroPosition + N);
+            newBoard.zeroPosition = zeroPosition + N;
             result.push(newBoard);
             newBoard = getCopy();
             newBoard.exch(zeroPosition,zeroPosition - N);
+            newBoard.zeroPosition = zeroPosition - N;
             result.push(newBoard);
         }
 
@@ -171,15 +179,27 @@ public class Board {
 
     public String toString()               // string representation of the board (in the output format specified below)
     {
-        String result = "";
-        int counter = N;
-        result = result + Integer.toString(N) + '\n';
-        for (int i = 0; i < position.length - 1; i++) 
+        // String result = "";
+        // int counter = N;
+        // result = result + Integer.toString(N);
+        // for (int i = 0; i < position.length; i++) 
+        // {
+        //     if (i % N == 0)
+        //         result = result + '\n';
+        //     result = result + Integer.toString(position[i]);
+        // }
+        // return result;
+
+        StringBuilder s = new StringBuilder();
+        s.append(N + "\n");
+        for (int i = 0; i < position.length; i++) 
         {
             if (i % N == 0)
-                result = result + '\n';
-            result = result + Integer.toString(i);
+                s.append("\n");
+            s.append(String.format("%2d ", position[i]));
         }
-        return result;
+        
+        return s.toString();
+
     }
 }
