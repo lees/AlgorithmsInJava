@@ -17,8 +17,6 @@ public class Board {
                 position[counter++] = blocks[i][j];
                 if (blocks[i][j] == 0) zeroPosition = counter - 1;
             }
-                
-
     }
 
     public int dimension()                 // board dimension N
@@ -54,8 +52,9 @@ public class Board {
     public int manhattan()                 // sum of Manhattan distances between blocks and goal
     {
         int result = 0;
-        for (int i = 0; i < position.length - 1; i++)
+        for (int i = 0; i < position.length; i++)
         {
+            if (position[i] == 0) continue;
             int finalPos = finalPosition(position[i]);
             int currentPos = i;
             result = result + Math.abs(posX(finalPos) - posX(currentPos));
@@ -94,9 +93,9 @@ public class Board {
     {
         Board newBoard = getCopy();
         if (newBoard.zeroPosition > 1)
-            newBoard.exch(0,1);
+            newBoard.exch(0, 1);
         else
-            newBoard.exch(position.length-1,position.length-2);
+            newBoard.exch(position.length - 1, position.length - 2);
         return newBoard;
     }
 
@@ -109,7 +108,7 @@ public class Board {
 
         if (N != that.N) return false;
         
-        for (int i = 0; i < position.length - 1; i++)
+        for (int i = 0; i < position.length; i++)
             if (position[i] != that.position[i]) return false;
 
         return true;
@@ -125,25 +124,25 @@ public class Board {
         if (zeroX == 0)
         {
             newBoard = getCopy();
-            newBoard.exch(zeroPosition,zeroPosition + 1);
+            newBoard.exch(zeroPosition, zeroPosition + 1);
             newBoard.zeroPosition++;
             result.push(newBoard);
         }
-        else if(zeroX == N-1)
+        else if (zeroX == N-1)
         {
             newBoard = getCopy();
-            newBoard.exch(zeroPosition,zeroPosition - 1);
+            newBoard.exch(zeroPosition, zeroPosition - 1);
             newBoard.zeroPosition--;
             result.push(newBoard);
         }
         else
         {
             newBoard = getCopy();
-            newBoard.exch(zeroPosition,zeroPosition + 1);
+            newBoard.exch(zeroPosition, zeroPosition + 1);
             newBoard.zeroPosition++;
             result.push(newBoard);
             newBoard = getCopy();
-            newBoard.exch(zeroPosition,zeroPosition - 1);
+            newBoard.exch(zeroPosition, zeroPosition - 1);
             newBoard.zeroPosition--;
             result.push(newBoard);
         }
@@ -151,25 +150,25 @@ public class Board {
         if (zeroY == 0)
         {
             newBoard = getCopy();
-            newBoard.exch(zeroPosition,zeroPosition + N);
+            newBoard.exch(zeroPosition, zeroPosition + N);
             newBoard.zeroPosition = zeroPosition + N; 
             result.push(newBoard);
         }
         else if (zeroY == N - 1)
         {
             newBoard = getCopy();
-            newBoard.exch(zeroPosition,zeroPosition - N);
+            newBoard.exch(zeroPosition, zeroPosition - N);
             newBoard.zeroPosition = zeroPosition - N;
             result.push(newBoard);
         }
         else
         {
             newBoard = getCopy();
-            newBoard.exch(zeroPosition,zeroPosition + N);
+            newBoard.exch(zeroPosition, zeroPosition + N);
             newBoard.zeroPosition = zeroPosition + N;
             result.push(newBoard);
             newBoard = getCopy();
-            newBoard.exch(zeroPosition,zeroPosition - N);
+            newBoard.exch(zeroPosition, zeroPosition - N);
             newBoard.zeroPosition = zeroPosition - N;
             result.push(newBoard);
         }
