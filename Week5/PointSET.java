@@ -35,7 +35,7 @@ public class PointSET {
     public void draw()                              // draw all of the points to standard draw
     {
         for (Point2D p : tree)
-            StdDraw.point(p.x(),p.y());
+            p.draw();
     }
 
     public Iterable<Point2D> range(RectHV rect)     // all points in the set that are inside the rectangle
