@@ -1,6 +1,6 @@
 
 import java.util.TreeSet;
-import java.util.Queue;
+import java.util.LinkedList;
 
 public class PointSET {
 
@@ -35,25 +35,25 @@ public class PointSET {
     public void draw()                              // draw all of the points to standard draw
     {
         for (Point2D p : tree)
-            StdDraw.point(p.getX(),p.getY());
+            StdDraw.point(p.x(),p.y());
     }
 
     public Iterable<Point2D> range(RectHV rect)     // all points in the set that are inside the rectangle
     {
-        Queue<Point2D> queue = new Queue<Point2D>();
+        LinkedList<Point2D> queue = new LinkedList<Point2D>();
         for (Point2D p: tree)
             if (rect.contains(p))
-                queue.add(p);
+                queue.addLast(p);
         return queue;
     }
 
     public Point2D nearest(Point2D p)               // a nearest neighbor in the set to p; null if set is empty
     {
         Point2D closestPoint = tree.first();
-        double closestDistance = p.distance(currentPoint);
+        double closestDistance = p.distanceTo(closestPoint);
         for (Point2D point: tree)
         {
-            double distance = point.distance(p);
+            double distance = point.distanceTo(p);
             if (distance < closestDistance)
             {
                 closestPoint = point;
