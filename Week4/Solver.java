@@ -5,6 +5,7 @@ public class Solver
 {
     private boolean isSolvable;
     private Node finishNode;
+    private int steps;
 
     private class Node implements Comparable<Node>
     {
@@ -42,10 +43,11 @@ public class Solver
         MinPQ<Node> queueTwins = new MinPQ<Node>();
         queueTwins.insert(new Node(null, initial.twin()));
 
-        int steps = 0;
+        steps = 0;
 
         while (true)
         {
+            steps++;
             currentNode = queue.delMin();
 
             //StdOut.println("Step "); StdOut.print(steps++);
@@ -99,6 +101,9 @@ public class Solver
         return -1;
     }
 
+    public int steps()
+    { return steps;}
+
     public Iterable<Board> solution()       // sequence of boards in a shortest solution; null if no solution
     {
         if (!isSolvable) return null;
@@ -135,6 +140,7 @@ public class Solver
         else 
         {
             StdOut.println("Minimum number of moves = " + solver.moves());
+            StdOut.println("Steps = " + solver.steps());
             for (Board board : solver.solution())
                 StdOut.println(board);
         }
